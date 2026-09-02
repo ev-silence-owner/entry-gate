@@ -3,16 +3,18 @@
 [![pre-launch](https://img.shields.io/badge/status-PRE--LAUNCH-8b5cf6?labelColor=0a0a0a&style=for-the-badge)](#status)
 [![non-clinical](https://img.shields.io/badge/safety-NON--CLINICAL-14b8a6?labelColor=0a0a0a&style=for-the-badge)](#boundary)
 [![entry-gate](https://img.shields.io/badge/surface-ENTRY%20GATE-d4af37?labelColor=0a0a0a&style=for-the-badge)](#what-this-is)
-[![cloudflare](https://img.shields.io/badge/host-Cloudflare%20Pages-f6821f?labelColor=0a0a0a&style=for-the-badge)](#cloudflare-pages)
+[![host](https://img.shields.io/badge/host-patternlens.app-d4af37?labelColor=0a0a0a&style=for-the-badge)](#patternlensapp)
+[![cloudflare](https://img.shields.io/badge/pages-Cloudflare-f6821f?labelColor=0a0a0a&style=for-the-badge)](#cloudflare-pages)
 [![license](https://img.shields.io/badge/license-MIT-22c55e?labelColor=0a0a0a&style=for-the-badge)](./LICENSE)
 
 # ENTRY GATE
 
 **Screen Zero. One field. One touch. A sealed arrival.**
 
-PatternLens Entry Gate · SILENCE SYSTEM · not a clinic · not LIVE
+PatternLens Entry Gate · SILENCE SYSTEM · not a clinic · not LIVE  
+Intended host: [patternlens.app](https://patternlens.app)
 
-[What this is](#what-this-is) · [Boundary](#boundary) · [Layers](#layers-l0--l1--l2) · [Cloudflare Pages](#cloudflare-pages) · [Status](#status)
+[What this is](#what-this-is) · [Boundary](#boundary) · [Layers](#layers-l0--l1--l2) · [patternlens.app](#patternlensapp) · [Cloudflare Pages](#cloudflare-pages) · [Status](#status)
 
 </div>
 
@@ -44,7 +46,7 @@ Tap is consent to continue. Logging is a second, quieter yes.
 | Time-to-first-touch + quadrant | Personality, mood, or health inference |
 | SHA-256 seal on this device | A server RSA signature |
 | Open-core *candidate* | A public npm package marked LIVE |
-| PRE-LAUNCH | `patternlens.app` as a verified LIVE host |
+| Intended host `patternlens.app` | A verified LIVE service |
 
 Forbidden in consumer copy and contracts: `ANS`, `HRV`, `GSR`, `ECG`, diagnosis, therapy, biological age, intervention recommendation.
 
@@ -70,9 +72,26 @@ No Genesis is written on timeout (30 s). An edge touch with low attention is tre
 
 ---
 
+## patternlens.app
+
+Canonical public name for this surface: **`https://patternlens.app`**.  
+`www.patternlens.app` should serve the same origin.
+
+This is the intended host. It is **not LIVE** until this repo is what HTTPS returns.
+
+| Name | Role |
+|---|---|
+| `patternlens.app` | Apex. Canonical. |
+| `www.patternlens.app` | Alias of the apex. |
+| `entry-gate.pages.dev` | Cloudflare Pages hostname after Connect to Git. |
+
+Today the apex still answers on **Vercel** and redirects to `www`, which has **no DNS**. Attach the names to this Pages project, then drop the Vercel assignment. Do not call the host LIVE until a GET of `/` returns Screen Zero with TLS.
+
+---
+
 ## Cloudflare Pages
 
-**No API token.** Connect this repo to Pages through Git.
+**No API token.** Connect this repo to Pages through Git, then attach the domain in the same panel.
 
 | Method | Token? | When |
 |---|---|---|
@@ -88,8 +107,11 @@ Steps:
 4. Repository: **entry-gate**.
 5. Framework preset **None**. Build command empty. Output directory `/`.
 6. **Save and Deploy** → `https://entry-gate.pages.dev`.
+7. **Custom domains** → Set up a domain → `patternlens.app`.
+8. Repeat for `www.patternlens.app`.
+9. Remove `patternlens.app` from the Vercel project so the apex is not split.
 
-This chat cannot complete Cloudflare OAuth on your behalf.
+This chat cannot complete Cloudflare OAuth, Vercel domain removal, or registrar DNS on your behalf.
 
 `wrangler.toml` is already here for a later CLI deploy if you want one.
 
@@ -119,13 +141,14 @@ Research does not leak into UI. Infra takes a signed digest, not a branch.
 
 ```text
 Entry Gate     ██████░░░░  pre-launch — Pages connect required
+Host           █████░░░░░  patternlens.app intended — not LIVE
 Contracts      ███████░░░  candidate — boundary review
 PatternLens    ████░░░░░░  pre-launch
 Public core    ░░░░░░░░░░  blocked — history, license, SBOM
-DNS / LIVE     ░░░░░░░░░░  blocked
+DNS / LIVE     ██░░░░░░░░  apex on Vercel · www has no record
 ```
 
-Package publish, repo visibility changes, deploy, and DNS each need their own approval.
+Package publish, repo visibility changes, deploy, and marking LIVE each need their own evidence.
 
 ---
 
@@ -145,10 +168,11 @@ No build step. No accounts. EffectLog stays in `localStorage`.
 | EffectLog | SHA-256 of L0, client-attested |
 | Consent | post-tap, before L1; equal visual weight |
 | Language | S11 — no clinical claims in copy |
+| Public name | `patternlens.app` — intended, not LIVE until verified |
 
 Security reports — not via public issues. See [SECURITY.md](./SECURITY.md).
 
-This file does not authorize clinical claims, raw biosignals, package publication, DNS changes, or marking a service LIVE.
+This file does not authorize clinical claims, raw biosignals, package publication, or marking a service LIVE.
 
 ---
 
@@ -156,7 +180,7 @@ This file does not authorize clinical claims, raw biosignals, package publicatio
 
 `#0a0a0a` void · `#d4af37` gold · `#e8e8e8` paper
 
-PRE-LAUNCH · NON-CLINICAL · MIT
+PRE-LAUNCH · NON-CLINICAL · MIT · patternlens.app
 
 [silence-phi](https://github.com/ev-silence-owner/silence-phi) · [patternlens-pages](https://github.com/ev-silence-owner/patternlens-pages)
 
