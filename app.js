@@ -75,7 +75,7 @@ function lastRecord() {
 
 function sessionSeconds(record) {
   if (!record) return 0;
-  const ms = record.userExitedAtMs ?? record.totalDurationMs;
+  const ms = record.elapsedMs ?? record.userExitedAtMs ?? record.totalDurationMs;
   return Math.max(0, Math.round(ms / 1000));
 }
 
@@ -171,9 +171,12 @@ function renderSilence() {
       Math.max(0, Math.round(performance.now() - start)),
     );
     saveRecord({
+      kind: "golden-silence",
+      schemaVersion: 1,
       sessionId: crypto.randomUUID(),
       silenceTheme: getTheme(),
       totalDurationMs: GOLDEN_TOTAL_MS,
+      elapsedMs: elapsed,
       userExitedAtMs: exited ? elapsed : null,
       phaseAtExit: phaseAt(elapsed),
       completedAt: new Date().toISOString(),
