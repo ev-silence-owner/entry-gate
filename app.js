@@ -24,7 +24,7 @@ const THOUGHTS = [
 const THEME_KEY = "silence.theme.v1";
 const LOG_KEY = "silence.golden.v1";
 const SPIRAL =
-  "M50 96 a 14 14 0 0 1 14 -14 a 23 23 0 0 1 23 23 a 37 37 0 0 1 -37 37";
+  "M50 108 a 13 13 0 0 1 13 -13 a 21 21 0 0 1 21 21 a 34 34 0 0 1 -34 34";
 
 const app = document.getElementById("app");
 const timers = [];
@@ -120,7 +120,7 @@ function renderSilence() {
           <div class="gs-form gs-form--entry" aria-hidden="true">
             <div class="gs-form-body">
               <svg class="gs-spiral" viewBox="0 0 100 162" aria-hidden="true" focusable="false">
-                <path d="${SPIRAL}" fill="none" stroke="currentColor" stroke-width="0.85" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="${SPIRAL}" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </div>
           </div>
